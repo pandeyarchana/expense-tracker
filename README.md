@@ -11,87 +11,128 @@ It supports group expenses, equal/exact/percentage splits, balance computation, 
 - Create groups and add users
 - Add expenses in a group or individually
 - Supports:
-    - Equal split
-    - Exact amount split
-    - Percentage-based split
+  - Equal split
+  - Exact amount split
+  - Percentage-based split
 - View balances for:
-    - Each user
-    - Each group
+  - Each user
+  - Each group
 - Simplify and settle debts using optimized transactions
 
+---
 
-1.  git clone https://github.com/pandeyarchana/expense-tracker.git
-cd expense-tracker
-2. Build the project
-./mvnw clean install
-3. Run the application
-./mvnw spring-boot:run
-App runs on: http://localhost:8080
+## Steps to get started
 
-🔗 H2 Console
-For database inspection:
+- Java 17
+- Spring Data JPA
+- H2 Database (in file mode for persistence)
+- JUnit, Mockito (for testing)
 
-URL: http://localhost:8080/h2-console
+## How to Run Locally
 
-JDBC URL: jdbc:h2:file:./data/demo
+✅ Prerequisites
 
-Username: sa
+Java 17+
+Maven
 
-Password: (leave blank)
+⚡ Clone and Run
 
-API Endpoints:
-User APIs
+- git clone https://github.com/pandeyarchana/expense-tracker.git
+- cd expense-tracker
+- mvn spring-boot:run
+- App runs on: http://localhost:8080
+
+🔧 Access H2 Console
+
+- URL: http://localhost:8080/h2-console
+- JDBC URL: jdbc:h2:file:./data/expense-db
+- Username: sa
+- Password: (leave blank)
+
+## REST API Endpoints
+
+**User APIs**
 
 POST /users
 GET  /users/{id}
 
-Group APIs
+**Group APIs**
 
 POST  /groups
 GET  /groups/{id}
 POST /{id}/users
 
-Expense APIs
+**Expense APIs**
 
 POST /expenses
 GET  /expenses/group/{groupId}
 GET  /expenses/user/{userId}
 
-Sample request:
+**Sample request:**
+
+Add an Expense
+
+POST http://localhost:8080/expenses
+Content-Type: application/json
 
 json
 {
-  "description": "Dinner",
-  "amount": 1200,
-  "paidBy": 1,
-  "groupId": 1,
-  "splitType": "EQUAL",
-  "participants": [1, 2, 3]
+"description": "Dinner",
+"amount": 1200,
+"paidBy": 1,
+"groupId": 1,
+"splitType": "EQUAL",
+"participants": [1, 2, 3]
 }
 
-Balance APIs
+**Balance APIs**
 
-GET /balances/all                // User-wide net balances
-GET /balances/group/{groupId}   // Group-wise balances
-GET /balances/settle        `   // Simplified transactions
+GET /balances/all                
+GET /balances/group/{groupId}   
+GET /balances/settle        `
 
-Running Tests
-./mvnw test
-Unit and integration tests are included for:
+**Sample request:**
 
-ExpenseService
+Get Balances
 
-BalanceService
+GET http://localhost:8080/balances/group/1
 
-Controllers
+json
+[
+{
+"userId": 1,
+"amount": 0.0
+},
+{
+"userId": 2,
+"amount": -700.0
+},
+{
+"userId": 3,
+"amount": 700.0
+}
+]
 
-Technologies Used
-Spring Boot 3.x
+## Running Tests
+- mvn test
+- Unit and integration tests are included for:
 
-Java 17+
+- ExpenseService
+- BalanceService
+- GroupService
+- UserService
+- SplitStrategyFactory
 
-H2 Database (file-based persistence)
+## Folder Structure
 
-Spring Data JPA
+src/main/java/com/archana/expensetracker
+|
+|-- controller      # API Endpoints
+|-- service         # Business Logic
+|-- model           # JPA Entities
+|-- dto             # Request & Response DTOs
+|-- splitStrategy   # Strategy Pattern for Splitting
+|-- repository      # Spring Data JPA Interfaces
 
-JUnit + Mockito (testing)
+## Access Swagger UI
+http://localhost:8080/swagger-ui/index.html
