@@ -19,16 +19,13 @@ It supports group expenses, equal/exact/percentage splits, balance computation, 
     - Each group
 - Simplify and settle debts using optimized transactions
 
-## Tech Stack
+---
+
+## Steps to get started
 
 - Java 17
-
-- Spring Boot
-
 - Spring Data JPA
-
 - H2 Database (in file mode for persistence)
-
 - JUnit, Mockito (for testing)
 
 ## How to Run Locally
@@ -36,7 +33,6 @@ It supports group expenses, equal/exact/percentage splits, balance computation, 
 ✅ Prerequisites
 
 Java 17+
-
 Maven
 
 ⚡ Clone and Run
@@ -89,11 +85,11 @@ json
   "participants": [1, 2, 3]
 }
 
-Balance APIs
+**Balance APIs**
 
-GET /balances/all                // User-wide net balances
-GET /balances/group/{groupId}   // Group-wise balances
-GET /balances/settle        `   // Simplified transactions
+GET /balances/all                
+GET /balances/group/{groupId}   
+GET /balances/settle        `   
 
 **Sample request:**
 
@@ -116,7 +112,6 @@ json
 "amount": 700.0
 }
 ]
-
 
 ## Running Tests
 - mvn test
