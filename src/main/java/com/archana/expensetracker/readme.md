@@ -11,12 +11,12 @@ It supports group expenses, equal/exact/percentage splits, balance computation, 
 - Create groups and add users
 - Add expenses in a group or individually
 - Supports:
-    - Equal split
-    - Exact amount split
-    - Percentage-based split
+  - Equal split
+  - Exact amount split
+  - Percentage-based split
 - View balances for:
-    - Each user
-    - Each group
+  - Each user
+  - Each group
 - Simplify and settle debts using optimized transactions
 
 ---
@@ -77,19 +77,19 @@ Content-Type: application/json
 
 json
 {
-  "description": "Dinner",
-  "amount": 1200,
-  "paidBy": 1,
-  "groupId": 1,
-  "splitType": "EQUAL",
-  "participants": [1, 2, 3]
+"description": "Dinner",
+"amount": 1200,
+"paidBy": 1,
+"groupId": 1,
+"splitType": "EQUAL",
+"participants": [1, 2, 3]
 }
 
 **Balance APIs**
 
 GET /balances/all                
 GET /balances/group/{groupId}   
-GET /balances/settle        `   
+GET /balances/settle        `
 
 **Sample request:**
 
