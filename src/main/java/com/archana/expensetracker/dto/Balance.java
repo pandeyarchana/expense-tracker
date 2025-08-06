@@ -1,9 +1,5 @@
 package com.archana.expensetracker.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
 public class Balance {
     private Long userId;
     private Double amount;

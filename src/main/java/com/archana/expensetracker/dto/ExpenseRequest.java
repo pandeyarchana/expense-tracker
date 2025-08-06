@@ -1,7 +1,6 @@
 package com.archana.expensetracker.dto;
 
 import com.archana.expensetracker.model.SplitType;
-import lombok.Data;
 
 import java.util.List;
 
