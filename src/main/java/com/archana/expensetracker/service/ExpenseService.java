@@ -9,6 +9,7 @@ import com.archana.expensetracker.repository.UserRepository;
 import com.archana.expensetracker.splitStrategy.SplitStrategy;
 import com.archana.expensetracker.splitStrategy.SplitStrategyFactory;
 import com.archana.expensetracker.model.SplitType;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class ExpenseService {
         this.splitStrategyFactory = splitStrategyFactory;
     }
 
+    @Operation(summary = "add a new expense")
     public Expense createExpense(ExpenseRequest request) {
         // Fetch user who paid
         User paidBy = userRepository.findById(request.getPaidBy())
@@ -82,11 +84,12 @@ public class ExpenseService {
         return expenseRepository.save(expense);
     }
 
-
+    @Operation(summary = "return expenses for a given groupId")
     public List<Expense> getExpensesByGroupId(Long groupId) {
         return expenseRepository.findByGroupId(groupId);
     }
 
+    @Operation(summary = "return expenses for a given userId")
     public List<Expense> getExpensesByUserId(Long userId) {
         return expenseRepository.findByPaidById(userId);
     }

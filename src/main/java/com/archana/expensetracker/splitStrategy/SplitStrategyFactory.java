@@ -1,5 +1,6 @@
 package com.archana.expensetracker.splitStrategy;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,7 @@ public class SplitStrategyFactory {
         }
     }
 
+    @Operation(summary = "return strategy object based on split type")
     public SplitStrategy getStrategy(SplitType type) {
         return strategyMap.get(type);
     }
