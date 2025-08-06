@@ -1,6 +1,5 @@
 package com.archana.expensetracker.dto;
 
-import lombok.Data;
 
 
 public class SimplifiedTransaction {

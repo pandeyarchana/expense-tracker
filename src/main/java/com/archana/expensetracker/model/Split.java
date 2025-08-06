@@ -1,7 +1,6 @@
 package com.archana.expensetracker.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 public class Split {
