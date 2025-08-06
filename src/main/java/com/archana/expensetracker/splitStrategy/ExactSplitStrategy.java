@@ -4,6 +4,7 @@ import com.archana.expensetracker.dto.SplitRequest;
 import com.archana.expensetracker.model.Split;
 import com.archana.expensetracker.model.User;
 import com.archana.expensetracker.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ public class ExactSplitStrategy implements SplitStrategy {
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "calculate exact splits")
     @Override
     public List<Split> calculateSplits(SplitRequest request) {
         List<Long> participants = request.getParticipants();

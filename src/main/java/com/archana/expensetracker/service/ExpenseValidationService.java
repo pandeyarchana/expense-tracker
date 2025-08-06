@@ -5,6 +5,7 @@ import com.archana.expensetracker.model.Group;
 import com.archana.expensetracker.model.Split;
 import com.archana.expensetracker.model.User;
 import com.archana.expensetracker.repository.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class ExpenseValidationService {
         this.userRepository = userRepository;
     }
 
+    @Operation(summary = "validate users in an expense split")
     public void validateUsersAreSplits(Expense expense) {
         for (Split split : expense.getSplits()) {
             Long userId = split.getUser().getId();
@@ -29,6 +31,7 @@ public class ExpenseValidationService {
         }
     }
 
+    @Operation(summary = "validate users in a group")
     public void validateUsersBelongToGroup(Group group, List<Split> splits) {
         List<User> groupMembers = group.getUsers();
 

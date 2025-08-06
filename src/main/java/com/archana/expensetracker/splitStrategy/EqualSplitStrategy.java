@@ -5,6 +5,7 @@ import com.archana.expensetracker.model.Split;
 import com.archana.expensetracker.model.User;
 import com.archana.expensetracker.repository.UserRepository;
 import com.archana.expensetracker.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ public class EqualSplitStrategy implements SplitStrategy {
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "calculate equal splits")
     @Override
     public List<Split> calculateSplits(SplitRequest request) {
         List<Long> participants = request.getParticipants();

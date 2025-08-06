@@ -7,6 +7,7 @@ import com.archana.expensetracker.model.User;
 import com.archana.expensetracker.repository.ExpenseRepository;
 import com.archana.expensetracker.repository.SplitRepository;
 import com.archana.expensetracker.repository.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class BalanceService {
     private UserRepository userRepository;
 
 
-    //for a given groupId
+    @Operation(summary = "calculate and return balances for a given groupId")
     public List<Balance> calculateBalances(final Long groupId) {
         List<Expense> expenses = expenseRepository.findByGroupId(groupId);
         Map<Long, Double> netBalances = new HashMap<>();
@@ -53,6 +54,7 @@ public class BalanceService {
                 .collect(Collectors.toList());
     }
 
+    @Operation(summary = "calculate and return balances for a given userId")
     public Map<Long, Double> getUserBalance(Long userId) {
         Map<Long, Double> balanceMap = new HashMap<>();
 
@@ -83,6 +85,7 @@ public class BalanceService {
         return balanceMap;
     }
 
+    @Operation(summary = "calculate and return balances for all users")
     public Map<User, Double> getAllUserBalances() {
         List<User> users = userRepository.findAll();
 

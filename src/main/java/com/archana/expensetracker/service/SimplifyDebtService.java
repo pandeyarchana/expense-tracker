@@ -2,6 +2,7 @@ package com.archana.expensetracker.service;
 
 import com.archana.expensetracker.dto.SimplifiedTransaction;
 import com.archana.expensetracker.model.User;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -9,6 +10,7 @@ import java.util.*;
 @Service
 public class SimplifyDebtService {
 
+    @Operation(summary = "simplify debt logic")
     public List<SimplifiedTransaction> simplify(Map<User, Double> balances) {
         PriorityQueue<UserBalance> debtors = new PriorityQueue<>(Comparator.comparingDouble(b -> b.amount));
         PriorityQueue<UserBalance> creditors = new PriorityQueue<>((a, b) -> Double.compare(b.amount, a.amount));

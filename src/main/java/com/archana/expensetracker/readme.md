@@ -19,45 +19,65 @@ It supports group expenses, equal/exact/percentage splits, balance computation, 
     - Each group
 - Simplify and settle debts using optimized transactions
 
+## Tech Stack
 
-1.  git clone https://github.com/your-username/expense-tracker.git
-cd expense-tracker
-2. Build the project
-./mvnw clean install
-3. Run the application
-./mvnw spring-boot:run
-App runs on: http://localhost:8080
+- Java 17
 
-🔗 H2 Console
-For database inspection:
+- Spring Boot
 
-URL: http://localhost:8080/h2-console
+- Spring Data JPA
 
-JDBC URL: jdbc:h2:file:./data/demo
+- H2 Database (in file mode for persistence)
 
-Username: sa
+- JUnit, Mockito (for testing)
 
-Password: (leave blank)
+## How to Run Locally
 
-API Endpoints:
-User APIs
+✅ Prerequisites
+
+Java 17+
+
+Maven
+
+⚡ Clone and Run
+
+- git clone https://github.com/pandeyarchana/expense-tracker.git
+- cd expense-tracker
+- mvn spring-boot:run
+- App runs on: http://localhost:8080
+
+🔧 Access H2 Console
+
+- URL: http://localhost:8080/h2-console
+- JDBC URL: jdbc:h2:file:./data/expense-db
+- Username: sa
+- Password: (leave blank)
+
+## REST API Endpoints
+
+**User APIs**
 
 POST /users
 GET  /users/{id}
 
-Group APIs
+**Group APIs**
 
 POST  /groups
 GET  /groups/{id}
 POST /{id}/users
 
-Expense APIs
+**Expense APIs**
 
 POST /expenses
 GET  /expenses/group/{groupId}
 GET  /expenses/user/{userId}
 
-Sample request:
+**Sample request:**
+
+Add an Expense
+
+POST http://localhost:8080/expenses
+Content-Type: application/json
 
 json
 {
@@ -75,23 +95,49 @@ GET /balances/all                // User-wide net balances
 GET /balances/group/{groupId}   // Group-wise balances
 GET /balances/settle        `   // Simplified transactions
 
-Running Tests
-./mvnw test
-Unit and integration tests are included for:
+**Sample request:**
 
-ExpenseService
+Get Balances
 
-BalanceService
+GET http://localhost:8080/balances/group/1
 
-Controllers
+json
+[
+{
+"userId": 1,
+"amount": 0.0
+},
+{
+"userId": 2,
+"amount": -700.0
+},
+{
+"userId": 3,
+"amount": 700.0
+}
+]
 
-Technologies Used
-Spring Boot 3.x
 
-Java 17+
+## Running Tests
+- mvn test
+- Unit and integration tests are included for:
 
-H2 Database (file-based persistence)
+- ExpenseService
+- BalanceService
+- GroupService
+- UserService
+- SplitStrategyFactory
 
-Spring Data JPA
+## Folder Structure
 
-JUnit + Mockito (testing)
+src/main/java/com/archana/expensetracker
+|
+|-- controller      # API Endpoints
+|-- service         # Business Logic
+|-- model           # JPA Entities
+|-- dto             # Request & Response DTOs
+|-- splitStrategy   # Strategy Pattern for Splitting
+|-- repository      # Spring Data JPA Interfaces
+
+## Access Swagger UI
+http://localhost:8080/swagger-ui/index.html

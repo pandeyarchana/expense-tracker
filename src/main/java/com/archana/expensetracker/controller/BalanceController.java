@@ -5,6 +5,7 @@ import com.archana.expensetracker.dto.SimplifiedTransaction;
 import com.archana.expensetracker.model.User;
 import com.archana.expensetracker.service.BalanceService;
 import com.archana.expensetracker.service.SimplifyDebtService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
