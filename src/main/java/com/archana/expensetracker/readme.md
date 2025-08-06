@@ -19,6 +19,9 @@ It supports group expenses, equal/exact/percentage splits, balance computation, 
     - Each group
 - Simplify and settle debts using optimized transactions
 
+---
+
+## Steps to get started
 
 1.  git clone https://github.com/your-username/expense-tracker.git
 cd expense-tracker
@@ -28,7 +31,7 @@ cd expense-tracker
 ./mvnw spring-boot:run
 App runs on: http://localhost:8080
 
-🔗 H2 Console
+**H2 Console**
 For database inspection:
 
 URL: http://localhost:8080/h2-console
@@ -39,19 +42,20 @@ Username: sa
 
 Password: (leave blank)
 
-API Endpoints:
-User APIs
+**API Endpoints:**
+
+**User APIs**
 
 POST /users
 GET  /users/{id}
 
-Group APIs
+**Group APIs**
 
 POST  /groups
 GET  /groups/{id}
 POST /{id}/users
 
-Expense APIs
+**Expense APIs**
 
 POST /expenses
 GET  /expenses/group/{groupId}
@@ -69,23 +73,22 @@ json
   "participants": [1, 2, 3]
 }
 
-Balance APIs
+**Balance APIs**
 
-GET /balances/all                // User-wide net balances
-GET /balances/group/{groupId}   // Group-wise balances
-GET /balances/settle        `   // Simplified transactions
+GET /balances/all                
+GET /balances/group/{groupId}   
+GET /balances/settle        `   
 
 Running Tests
 ./mvnw test
 Unit and integration tests are included for:
 
 ExpenseService
-
 BalanceService
-
 Controllers
 
-Technologies Used
+**Technologies Used**
+
 Spring Boot 3.x
 
 Java 17+
