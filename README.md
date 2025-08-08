@@ -45,7 +45,7 @@ Maven
 🔧 Access H2 Console
 
 - URL: http://localhost:8080/h2-console
-- JDBC URL: jdbc:h2:file:./data/expense-db
+- JDBC URL: jdbc:h2:file:./data/demo
 - Username: sa
 - Password: (leave blank)
 
